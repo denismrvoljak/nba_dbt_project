@@ -169,3 +169,21 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+
+
+#dbt
+target/
+dbt_packages/
+logs/
+
+# Environment
+.env
+profiles.yml
+
+# MacOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]

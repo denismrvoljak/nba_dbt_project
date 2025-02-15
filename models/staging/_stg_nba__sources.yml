@@ -1,0 +1,23 @@
+version: 2
+
+sources:
+  - name: nba
+    database: postgres  # Your database name
+    schema: nba    # Your raw data schema
+    tables:
+      - name: team
+      - name: team_details
+      - name: team_history
+      - name: team_info_common
+      - name: player
+      - name: common_player_info
+      - name: game_info
+      - name: game_summary
+      - name: game
+      - name: draft_combine_stats
+      - name: draft_history
+      - name: inactive_players
+      - name: line_score
+      - name: officials
+      - name: other_stats
+      - name: play_by_play

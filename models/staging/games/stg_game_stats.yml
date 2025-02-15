@@ -1,0 +1,140 @@
+version: 2
+
+version: 2
+
+models:
+  - name: stg_game_stats
+    description: >
+      Standardized game statistics model containing key metrics for both home and away teams.
+      This model includes game identifiers, team information, and detailed statistics for games
+      played since the 2019-2020 season.
+    columns:
+      - name: game_id
+        description: Unique identifier for each NBA game
+        tests:
+          - unique
+          - not_null
+
+      - name: game_date
+        description: Date when the game was played
+        tests:
+          - not_null
+
+      - name: season_id
+        description: Identifier for the NBA season
+        tests:
+          - not_null
+
+      - name: season_type
+        description: Type of season (Regular Season, Playoffs, etc.)
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Regular Season', 'Playoffs', 'Pre Season']
+
+      - name: team_id_home
+        description: Unique identifier for the home team
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_teams')
+              field: team_id
+
+      - name: team_id_away
+        description: Unique identifier for the away team
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_teams')
+              field: team_id
+
+      - name: wl_home
+        description: Game result for home team (W/L)
+        tests:
+          - accepted_values:
+              values: ['W', 'L']
+
+      - name: game_minutes
+        description: Total minutes played in the game
+        tests:
+          - not_null
+
+      # Field Goal Statistics - Home
+      - name: fgm_home
+        description: Field goals made by home team
+      - name: fga_home
+        description: Field goals attempted by home team
+      
+      # Field Goal Statistics - Away
+      - name: fgm_away
+        description: Field goals made by away team
+      - name: fga_away
+        description: Field goals attempted by away team
+
+      # Three Point Statistics - Home
+      - name: fg3m_home
+        description: Three-point field goals made by home team
+      - name: fg3a_home
+        description: Three-point field goals attempted by home team
+
+      # Three Point Statistics - Away
+      - name: fg3m_away
+        description: Three-point field goals made by away team
+      - name: fg3a_away
+        description: Three-point field goals attempted by away team
+
+      # Free Throw Statistics - Home
+      - name: ftm_home
+        description: Free throws made by home team
+      - name: fta_home
+        description: Free throws attempted by home team
+
+      # Free Throw Statistics - Away
+      - name: ftm_away
+        description: Free throws made by away team
+      - name: fta_away
+        description: Free throws attempted by away team
+
+      # Rebound Statistics - Home
+      - name: oreb_home
+        description: Offensive rebounds by home team
+      - name: dreb_home
+        description: Defensive rebounds by home team
+
+      # Rebound Statistics - Away
+      - name: oreb_away
+        description: Offensive rebounds by away team
+      - name: dreb_away
+        description: Defensive rebounds by away team
+
+      # Other Statistics - Home
+      - name: ast_home
+        description: Assists by home team
+      - name: stl_home
+        description: Steals by home team
+      - name: blk_home
+        description: Blocks by home team
+      - name: tov_home
+        description: Turnovers by home team
+      - name: pf_home
+        description: Personal fouls by home team
+      - name: pts_home
+        description: Total points scored by home team
+      - name: plus_minus_home
+        description: Plus/minus statistic for home team
+
+      # Other Statistics - Away
+      - name: ast_away
+        description: Assists by away team
+      - name: stl_away
+        description: Steals by away team
+      - name: blk_away
+        description: Blocks by away team
+      - name: tov_away
+        description: Turnovers by away team
+      - name: pf_away
+        description: Personal fouls by away team
+      - name: pts_away
+        description: Total points scored by away team
+      - name: plus_minus_away
+        description: Plus/minus statistic for away team
