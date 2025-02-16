@@ -187,3 +187,6 @@ profiles.yml
 # Python
 __pycache__/
 *.py[cod]
+
+
+docker_setup/

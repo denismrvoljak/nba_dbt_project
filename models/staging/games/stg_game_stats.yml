@@ -1,7 +1,5 @@
 version: 2
 
-version: 2
-
 models:
   - name: stg_game_stats
     description: >
@@ -27,26 +25,16 @@ models:
 
       - name: season_type
         description: Type of season (Regular Season, Playoffs, etc.)
-        tests:
-          - not_null
-          - accepted_values:
-              values: ['Regular Season', 'Playoffs', 'Pre Season']
 
       - name: team_id_home
         description: Unique identifier for the home team
         tests:
           - not_null
-          - relationships:
-              to: ref('stg_teams')
-              field: team_id
 
       - name: team_id_away
         description: Unique identifier for the away team
         tests:
           - not_null
-          - relationships:
-              to: ref('stg_teams')
-              field: team_id
 
       - name: wl_home
         description: Game result for home team (W/L)

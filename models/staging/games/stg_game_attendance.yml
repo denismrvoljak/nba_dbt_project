@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: stg_game_attendance
+    description: >
+      This model contains game attendance data from NBA games, tracking the number of spectators
+      present at each game. This information is useful for analyzing attendance trends, venue
+      capacity utilization, and potential correlations with game factors.
+    columns:
+      - name: game_id
+        description: Unique identifier for each NBA game
+        tests:
+          - unique
+          - not_null
+      
+      - name: attendance
+        description: Number of spectators present at the game

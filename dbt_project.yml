@@ -35,15 +35,22 @@ models:
     staging:
       +materialized: view
       +schema: staging
+      +meta:
+        lightdash:
+          hidden: true
 
     # Intermediate - ephemeral since they're just intermediate calculations
     intermediate:
       +materialized: ephemeral
-      int_nba:
-        +schema: intermediate
+      +schema: intermediate
+      +meta:
+        lightdash:
+          hidden: true
 
     # Marts - tables since they're the final output
     marts:
       +materialized: table
-      analytics:
-        +schema: marts
+      +schema: marts
+      +meta:
+        lightdash:
+          hidden: false

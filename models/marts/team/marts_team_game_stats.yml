@@ -1,0 +1,118 @@
+version: 2
+
+models:
+  - name: marts_team_game_stats
+    description: "Fact table containing game statistics for NBA games since 2019-2020 season, including both home and away team performance metrics"
+    meta:
+      type: "metrics"  # Tells Lightdash this is a metrics table
+      label: "Game Statistics"  # Display name in Lightdash UI
+    
+    columns:
+      - name: game_id
+        description: "Unique identifier for each game"
+        tests:
+          - unique
+          - not_null
+        meta:
+          dimension:
+            type: string  # Lightdash data type
+            hidden: false  # Whether to show in UI
+
+      - name: game_date
+        description: "Date when the game was played"
+        tests:
+          - not_null
+        meta:
+          dimension:
+            type: date
+            time_intervals: ['day', 'week', 'month', 'quarter', 'year']  # Available time grains
+            hidden: false
+
+      - name: season_id
+        description: "Identifier for the NBA season"
+        tests:
+          - not_null
+        meta:
+          dimension:
+            type: string
+            hidden: false
+
+      - name: team_name_home
+        description: "Nickname of the home team"
+        meta:
+          dimension:
+            type: string
+            hidden: false
+
+      - name: team_name_away
+        description: "Nickname of the away team"
+        meta:
+          dimension:
+            type: string
+            hidden: false
+
+      # Metrics metadata for numerical values
+      - name: win_home
+        description: "Number of wins by home team"
+        meta:
+          metrics:
+            home_team_wins:
+              type: sum
+              label: "# of Home Team Wins"
+              description: "Number of wins by home team"
+              hidden: false
+
+      - name: win_away
+        description: "Number of wins by away team"
+        meta:
+          metrics:
+            away_team_wins:
+              type: sum
+              label: "# of Away Team Wins"
+              description: "Number of wins by away team"
+              hidden: false
+
+      - name: game_id
+        description: "Unique identifier for each game"
+        meta:
+          metrics:
+            total_games:
+              type: count
+              label: "Total Games"
+              description: "Total number of games"
+              hidden: false
+
+      - name: pts_home
+        description: "Total points scored by home team"
+        meta:
+          metrics:
+            home_team_points:
+              type: sum
+              label: "Home Team Points"
+              description: "Total points scored by home team"
+              hidden: false
+
+      - name: pts_away
+        description: "Total points scored by away team"
+        meta:
+          metrics:
+            away_team_points:
+              type: sum
+              label: "Away Team Points"
+              description: "Total points scored by away team"
+              hidden: false
+
+      - name: attendance
+        description: "Number of attendees at the game"
+        meta:
+          metrics:
+            average_attendance:
+              type: average
+              label: "Average Attendance"
+              description: "Average game attendance"
+              hidden: false
+            total_attendance:
+              type: sum
+              label: "Total Attendance"
+              description: "Total game attendance"
+              hidden: false

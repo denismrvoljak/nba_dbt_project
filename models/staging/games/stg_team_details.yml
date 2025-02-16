@@ -1,0 +1,72 @@
+version: 2
+
+models:
+  - name: stg_team_details
+    description: >
+      Comprehensive information about NBA teams including their basic identifiers, 
+      venue details, management structure, and social media presence. This model 
+      serves as a central reference for team-specific information.
+    columns:
+      - name: team_id
+        description: Unique identifier for each NBA team
+        tests:
+          - unique
+          - not_null
+
+      - name: abbreviation
+        description: Official three-letter abbreviation of the team (e.g., LAL for Los Angeles Lakers)
+        tests:
+          - not_null
+
+      - name: nickname
+        description: Team's nickname/mascot (e.g., Lakers, Warriors)
+        tests:
+          - not_null
+
+      - name: yearfounded
+        description: Year when the team was established
+        tests:
+          - not_null
+
+      - name: city
+        description: City where the team is based
+        tests:
+          - not_null
+
+      - name: arena
+        description: Name of the team's home arena
+        tests:
+          - not_null
+
+      - name: arenacapacity
+        description: Maximum seating capacity of the team's home arena
+        tests:
+          - not_null
+          - positive_value
+
+      - name: owner
+        description: Current owner or ownership group of the team
+        tests:
+          - not_null
+
+      - name: generalmanager
+        description: Current General Manager or President of Basketball Operations
+        tests:
+          - not_null
+
+      - name: headcoach
+        description: Current head coach of the team
+        tests:
+          - not_null
+
+      - name: dleagueaffiliation
+        description: NBA G League (formerly D-League) team affiliated with the NBA team
+
+      - name: facebook
+        description: Official Facebook page handle of the team
+
+      - name: instagram
+        description: Official Instagram handle of the team
+
+      - name: twitter
+        description: Official Twitter/X handle of the team
