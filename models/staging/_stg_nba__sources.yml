@@ -2,7 +2,7 @@ version: 2
 
 sources:
   - name: nba
-    database: postgres  # Your database name
+    database: defaultdb  # Your database name
     schema: nba    # Your raw data schema
     tables:
       - name: team
